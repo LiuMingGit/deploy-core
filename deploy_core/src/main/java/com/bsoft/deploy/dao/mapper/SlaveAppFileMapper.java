@@ -31,6 +31,9 @@ public interface SlaveAppFileMapper {
     @Select("select id,appId,slaveId,app_target_path,app_backup_path,app_tomcat_home from slave_app")
     List<SlaveApp> loadSlaveApps();
 
+    @Select("select id,appId,slaveId,app_target_path,app_backup_path,app_tomcat_home from slave_app where appId=#{appId}")
+    List<SlaveApp> findSlaveApps(int appId);
+
     @Select("select id,appId,slaveId,app_target_path,app_backup_path,app_tomcat_home from slave_app where id=#{slaveAppId}")
     SlaveApp findSlaveApp(int slaveAppId);
 

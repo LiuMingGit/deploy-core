@@ -14,6 +14,8 @@ public class SlaveApp {
     private String appBackupPath;
     private String appTomcatHome;
 
+    private String appName;
+
     public int getId() {
         return id;
     }
@@ -60,5 +62,13 @@ public class SlaveApp {
 
     public void setAppTomcatHome(String appTomcatHome) {
         this.appTomcatHome = appTomcatHome;
+    }
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
     }
 }

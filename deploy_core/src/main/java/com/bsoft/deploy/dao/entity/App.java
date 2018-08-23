@@ -10,6 +10,7 @@ public class App {
     private int appId;
     private String appName;
     private String path;
+    private String describes;
 
     public int getAppId() {
         return appId;
@@ -33,5 +34,13 @@ public class App {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getDescribes() {
+        return describes;
+    }
+
+    public void setDescribes(String describes) {
+        this.describes = describes;
     }
 }

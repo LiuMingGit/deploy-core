@@ -1,6 +1,5 @@
 package com.bsoft.deploy.dao.mapper;
 
-import com.bsoft.deploy.dao.entity.App;
 import com.bsoft.deploy.dao.entity.FileDTO;
 import com.bsoft.deploy.dao.entity.FileLog;
 import org.apache.ibatis.annotations.*;
@@ -68,13 +67,6 @@ public interface AppFileMapper {
      */
     @Delete({"delete base_app_file where id=#{id}"})
     void deleteById(int id);
-
-    @Select("select path from base_app where appId=#{appId}")
-    String findPathById(int id);
-
-    @Select("select appId,appName,path from base_app")
-    List<App> loadApps();
-
 
 
 }

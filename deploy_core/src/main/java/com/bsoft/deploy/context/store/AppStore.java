@@ -1,6 +1,8 @@
 package com.bsoft.deploy.context.store;
 
 import com.bsoft.deploy.dao.entity.App;
+import com.bsoft.deploy.dao.mapper.AppMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -12,6 +14,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class AppStore {
 
+    @Autowired
+    AppMapper appMapper;
+
     /**
      * master主机应用默认的路径
      */
@@ -22,7 +27,12 @@ public class AppStore {
     }
 
     public App getApp(int appId) {
-        return null;
+        if (apps.containsKey(appId)) {
+            return apps.get(appId);
+        }
+        App app = appMapper.findApp(appId);
+        apps.put(appId, app);
+        return app;
     }
 
     /**

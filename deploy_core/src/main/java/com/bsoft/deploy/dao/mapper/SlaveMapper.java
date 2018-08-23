@@ -1,6 +1,7 @@
 package com.bsoft.deploy.dao.mapper;
 
 import com.bsoft.deploy.dao.entity.Slave;
+import com.bsoft.deploy.dao.entity.SlaveApp;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -19,6 +20,7 @@ public interface SlaveMapper {
 
     /**
      * 新增目标节点
+     *
      * @param slave
      * @return
      */
@@ -28,6 +30,9 @@ public interface SlaveMapper {
 
     @Select("select id,name,ip,status,describes from base_slave")
     List<Slave> loadSlaves();
+
+    @Select("select id,appId,slaveId,app_target_path,app_backup_path,app_tomcat_home from slave_app where slaveId=#{slaveId}")
+    List<SlaveApp> loadSlaveApps(int slaveId);
 
     @Select("select id,name,ip,describes from base_slave where id=#{id}")
     Slave findSlave(int id);

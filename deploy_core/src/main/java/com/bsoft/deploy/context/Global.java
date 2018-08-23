@@ -1,10 +1,12 @@
 package com.bsoft.deploy.context;
 
+import com.bsoft.deploy.context.store.AppStore;
 import com.bsoft.deploy.context.store.SlaveStore;
 import com.bsoft.deploy.dao.entity.App;
 import com.bsoft.deploy.dao.entity.Slave;
 import com.bsoft.deploy.dao.entity.SlaveApp;
 import com.bsoft.deploy.dao.mapper.AppFileMapper;
+import com.bsoft.deploy.dao.mapper.AppMapper;
 import com.bsoft.deploy.dao.mapper.SlaveAppFileMapper;
 import com.bsoft.deploy.dao.mapper.SlaveMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class Global {
 
     private static AppFileMapper commFileMapper;
     private static SlaveAppFileMapper commSlaveAppFileMapper;
+
+    @Autowired
+    AppMapper appMapper;
 
     @Autowired
     AppFileMapper fileMapper;
@@ -79,7 +84,7 @@ public class Global {
 
 
     private void initApps() {
-        List<App> apps = fileMapper.loadApps();
+        List<App> apps = appMapper.loadApps();
         for (App app : apps) {
             appInfo.put(app.getAppId(), app);
         }
@@ -99,7 +104,9 @@ public class Global {
         }
     }
 
-
+    public static AppStore getAppStore() {
+        return appContext.getBean(AppStore.class);
+    }
     public static SlaveStore getSlaveStore() {
         return appContext.getBean(SlaveStore.class);
     }
