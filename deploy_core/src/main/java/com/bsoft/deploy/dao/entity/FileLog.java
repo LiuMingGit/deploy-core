@@ -13,7 +13,7 @@ public class FileLog {
     private int slaveId;
     private int appId;
     private int fileId;
-    private long mark;
+    private String mark;
     private int status;
     private String message;
     private Date optime;
@@ -42,11 +42,11 @@ public class FileLog {
         this.fileId = fileId;
     }
 
-    public long getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(long mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 

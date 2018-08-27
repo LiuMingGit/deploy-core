@@ -2,6 +2,7 @@ package com.bsoft.deploy.context;
 
 import com.bsoft.deploy.context.store.AppStore;
 import com.bsoft.deploy.context.store.SlaveStore;
+import com.bsoft.deploy.context.store.TokenStore;
 import com.bsoft.deploy.dao.entity.App;
 import com.bsoft.deploy.dao.entity.Slave;
 import com.bsoft.deploy.dao.entity.SlaveApp;
@@ -104,9 +105,14 @@ public class Global {
         }
     }
 
+    public static TokenStore getTokenStore() {
+        return appContext.getBean(TokenStore.class);
+    }
+
     public static AppStore getAppStore() {
         return appContext.getBean(AppStore.class);
     }
+
     public static SlaveStore getSlaveStore() {
         return appContext.getBean(SlaveStore.class);
     }

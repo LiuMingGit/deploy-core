@@ -1,6 +1,7 @@
 package com.bsoft.deploy.dao.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * desc
@@ -16,6 +17,8 @@ public class User {
     private String loginName;
     private char status;
     private String token;
+
+    private List<String> roles;
 
     public String getToken() {
         return token;
@@ -71,5 +74,13 @@ public class User {
 
     public void setStatus(char status) {
         this.status = status;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }

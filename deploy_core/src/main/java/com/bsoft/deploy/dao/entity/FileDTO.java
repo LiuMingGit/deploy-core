@@ -13,7 +13,7 @@ public class FileDTO {
     private int appId;
     private String filename;
     private String path;
-    private long mark;
+    private String mark;
     private Date optime;
     private int sign;
 
@@ -50,11 +50,11 @@ public class FileDTO {
         this.path = path;
     }
 
-    public long getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(long mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 

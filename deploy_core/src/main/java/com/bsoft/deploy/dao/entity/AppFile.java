@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class AppFile implements Serializable {
     private int id;
 
-    private long mark;
+    private String mark;
 
     private int logId;
     /**
@@ -104,11 +104,11 @@ public class AppFile implements Serializable {
         this.id = id;
     }
 
-    public long getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(long mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 

@@ -2,6 +2,7 @@ package com.bsoft.deploy.dao.mapper;
 
 import com.bsoft.deploy.dao.entity.SlaveApp;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -43,7 +44,7 @@ public interface SlaveAppFileMapper {
      * @return
      */
     @Update({"update slave_app_file set mark=#{mark},optime=#{optime, jdbcType=TIMESTAMP} where id=#{id}"})
-    int updateSlaveFile(long mark, Date optime, int id);
+    int updateSlaveFile(@Param("mark") String mark, @Param("optime") Date optime,  @Param("id") int id);
 
 
 }

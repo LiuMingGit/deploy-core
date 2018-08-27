@@ -5,6 +5,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
@@ -102,6 +103,24 @@ public class FileUtils {
             return root.element("Service").element("Connector").attributeValue("port");
         } catch (DocumentException e) {
             throw new FileOperationException("获取tomcat端口失败!" + e.getMessage(), e);
+        }
+    }
+
+
+    /**
+     * file md5 文件签名
+     * @param file
+     * @return
+     */
+    public static String getFileMd5(File file) {
+        FileInputStream fis = null;
+        try {
+            return DigestUtils.md5DigestAsHex(new FileInputStream(file));
+        } catch (Exception e) {
+            // slient
+            return null;
+        } finally {
+            try { fis.close(); } catch (Exception e) {}
         }
     }
 
