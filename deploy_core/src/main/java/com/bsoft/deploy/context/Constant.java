@@ -29,4 +29,7 @@ public interface Constant {
      * 导出线程
      */
     String CMD_THREAD_DUMP = "THREAD_DUMP";
+
+
+    String TMP_FILE_SUFFIX = ".tmp";
 }

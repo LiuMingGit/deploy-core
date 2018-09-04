@@ -1,6 +1,7 @@
 package com.bsoft.deploy.dao.mapper;
 
 import com.bsoft.deploy.dao.entity.App;
+import com.bsoft.deploy.dao.entity.AppPackage;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -33,4 +34,7 @@ public interface AppMapper {
 
     @Select("select appId,appName,path,describes from base_app where appId=#{appId}")
     App findApp(int appId);
+
+    @Select("select id,appId,version,updateDesc,optime,type,locked from app_upd_pkg where appId=#{appId}")
+    List<AppPackage> loadAppPackages(int appId);
 }
