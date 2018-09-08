@@ -116,15 +116,13 @@ public class FileUtils {
     public static String getFileMd5(File file) {
         FileInputStream fis = null;
         try {
-            return DigestUtils.md5DigestAsHex(new FileInputStream(file));
+            fis = new FileInputStream(file);
+            return DigestUtils.md5DigestAsHex(fis);
         } catch (Exception e) {
             // slient
             return null;
         } finally {
-            try {
-                fis.close();
-            } catch (Exception e) {
-            }
+            closeStream(fis);
         }
     }
 
@@ -157,7 +155,7 @@ public class FileUtils {
             ZipEntry entry = entries.nextElement();
             String zipEntryName = entry.getName();
 
-            String outPath = targetDir + File.separator + zipEntryName.substring(zipEntryName.indexOf("/"));
+            String outPath = targetDir + File.separator + zipEntryName;
             InputStream in = null;
             FileOutputStream out = null;
             try {
@@ -188,6 +186,7 @@ public class FileUtils {
             }
 
         }
+        zip.close();
         // System.out.println("******************解压完毕********************");
     }
 
@@ -225,6 +224,6 @@ public class FileUtils {
 
     public static void main(String[] args) throws IOException {
         File zip = new File("D:/dmp/dmp.zip");
-        FileUtils.unZip(zip, "D:/dmp/exdmp/");
+        System.out.println(zip.getAbsolutePath().endsWith(".zip"));
     }
 }

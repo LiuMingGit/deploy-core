@@ -11,6 +11,7 @@ import java.util.Date;
 public class FileDTO {
     private int id;
     private int appId;
+    private int pkgId;
     private String filename;
     private String path;
     private String mark;
@@ -72,5 +73,13 @@ public class FileDTO {
 
     public void setSign(int sign) {
         this.sign = sign;
+    }
+
+    public int getPkgId() {
+        return pkgId;
+    }
+
+    public void setPkgId(int pkgId) {
+        this.pkgId = pkgId;
     }
 }

@@ -69,4 +69,20 @@ public interface AppFileMapper {
     void deleteById(int id);
 
 
+    @Select("select id,pkgId,mark from app_upd_pkg_file where pkgId=#{pkgId} and path=#{path}")
+    FileDTO findPackageFile(@Param("pkgId") int pkgId, @Param("path") String path);
+
+    @Insert({"insert into app_upd_pkg_file(pkgId, filename, path, mark, optime) values(#{pkgId}, #{filename}, #{path},#{mark}, #{optime, jdbcType=TIMESTAMP})"})
+    @Options(useGeneratedKeys = true)
+    void savePackageFile(FileDTO fileDTO);
+
+    /**
+     * 更新文件标记和最后修改时间
+     *
+     * @param fileDTO
+     * @return
+     */
+    @Update({"update app_upd_pkg_file set optime=#{fileDTO.optime, jdbcType=TIMESTAMP},mark=#{fileDTO.mark} where id=#{fileDTO.id}"})
+    int updatePackageFile(FileDTO fileDTO);
+
 }
