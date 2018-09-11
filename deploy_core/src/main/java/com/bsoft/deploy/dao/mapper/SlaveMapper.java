@@ -41,15 +41,20 @@ public interface SlaveMapper {
     Slave findSlave(int id);
 
     @Select("select id,slaveId,appId,pkgId,app_target_path,app_backup_path,app_tomcat_home from slave_app where id=#{id}")
-    SlaveApp findSlaveApp(int id);
+    SlaveApp findSlaveAppById(int id);
+
+    @Select("select id,slaveId,appId,pkgId,app_target_path,app_backup_path,app_tomcat_home from slave_app where id=#{id}")
+    SlaveApp findSlaveApp(@Param("slaveId") int slaveId, @Param("appId") int appId);
 
     @Insert("insert into slave_app(slaveId,appId,app_target_path,app_backup_path,app_tomcat_home) values(#{slaveId},#{appId},#{app_target_path},#{app_backup_path},#{app_tomcat_home})")
     @Options(useGeneratedKeys = true)
     void saveSlaveApp(SlaveApp slaveApp);
 
-    @Update("update slave_app set app_target_path=#{app_target_path},app_backup_path=#{app_backup_path},app_tomcat_home=#{app_tomcat_home} where id=#{id}")
+    @Update("update slave_app set app_target_path=#{appTargetPath},app_backup_path=#{appBackupPath},app_tomcat_home=#{appTomcatHome} where id=#{id}")
     void updateSlaveApp(SlaveApp slaveApp);
 
     @Update("update slave_app set pkgId=#{pkgId} where id=#{id}")
-    void updateSlaveAppVersion(int pkgId);
+    void updateSlaveAppVersion(@Param("id")int slaveAppId, @Param("pkgId") int pkgId);
+
+
 }

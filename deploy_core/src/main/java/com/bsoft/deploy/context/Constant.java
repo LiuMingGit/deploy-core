@@ -30,6 +30,13 @@ public interface Constant {
      */
     String CMD_THREAD_DUMP = "THREAD_DUMP";
 
+    /**
+     * 备份应用
+     */
+    String CMD_APP_BACKUP = "APP_BACKUP";
+
 
     String TMP_FILE_SUFFIX = ".tmp";
+
+
 }

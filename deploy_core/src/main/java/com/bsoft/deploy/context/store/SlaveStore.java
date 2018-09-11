@@ -41,7 +41,16 @@ public class SlaveStore {
     }
 
     public SlaveApp getSlaveApp(int slaveId, int appId) {
-        return null;
+        for (SlaveApp slaveApp : slaveApps.values()) {
+            if (slaveApp.getSlaveId() == slaveId && slaveApp.getAppId() == appId) {
+                return slaveApp;
+            }
+        }
+        SlaveApp slaveApp = slaveMapper.findSlaveApp(slaveId, appId);
+        if (slaveApp != null) {
+            slaveApps.put(slaveApp.getId(), slaveApp);
+        }
+        return slaveApp;
     }
 
     public SlaveApp getSlaveApp(int slaveAppId) {

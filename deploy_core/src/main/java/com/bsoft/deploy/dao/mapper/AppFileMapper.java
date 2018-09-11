@@ -43,7 +43,7 @@ public interface AppFileMapper {
      * @param fileLog
      * @return
      */
-    @Insert({"insert into file_transfer_log(slaveId, appId, fileId, mark, message, optime, status) values(#{slaveId}, #{appId}, #{fileId}, #{mark}, #{message}, #{optime, jdbcType=TIMESTAMP},0)"})
+    @Insert({"insert into file_transfer_log(slaveId, appId, pkgId, fileId, mark, message, optime, status) values(#{slaveId}, #{appId},#{pkgId}, #{fileId}, #{mark}, #{message}, #{optime, jdbcType=TIMESTAMP},0)"})
     @Options(useGeneratedKeys = true, keyColumn = "id")
     int saveFileTransferLog(FileLog fileLog);
 

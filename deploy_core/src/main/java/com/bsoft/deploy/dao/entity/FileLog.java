@@ -12,6 +12,7 @@ public class FileLog {
     private int id;
     private int slaveId;
     private int appId;
+    private int pkgId;
     private int fileId;
     private String mark;
     private int status;
@@ -80,5 +81,13 @@ public class FileLog {
 
     public void setOptime(Date optime) {
         this.optime = optime;
+    }
+
+    public int getPkgId() {
+        return pkgId;
+    }
+
+    public void setPkgId(int pkgId) {
+        this.pkgId = pkgId;
     }
 }

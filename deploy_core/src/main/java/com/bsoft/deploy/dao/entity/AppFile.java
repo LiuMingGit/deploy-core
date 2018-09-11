@@ -22,9 +22,9 @@ public class AppFile implements Serializable {
      */
     private String name;
     /**
-     * 所属应用
+     * slave_app主键
      */
-    private int appId;
+    private int slaveAppId;
     /**
      * 文件相对路径
      */
@@ -88,12 +88,12 @@ public class AppFile implements Serializable {
         this.relative = relative;
     }
 
-    public int getAppId() {
-        return appId;
+    public int getSlaveAppId() {
+        return slaveAppId;
     }
 
-    public void setAppId(int appId) {
-        this.appId = appId;
+    public void setSlaveAppId(int slaveAppId) {
+        this.slaveAppId = slaveAppId;
     }
 
     public int getId() {
