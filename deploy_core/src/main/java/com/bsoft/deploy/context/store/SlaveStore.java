@@ -80,4 +80,8 @@ public class SlaveStore {
         slaveApps.clear();
         slaveAppPort.clear();
     }
+
+    public void reloadSlaveApp(int slaveAppId) {
+        slaveApps.remove(slaveAppId);
+    }
 }

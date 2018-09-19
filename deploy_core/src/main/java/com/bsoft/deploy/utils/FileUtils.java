@@ -222,8 +222,23 @@ public class FileUtils {
         dir.delete();
     }
 
+    /**
+     * 格式化文件路径,包含结尾分隔符
+     * @param path
+     * @return
+     */
+    public static String pathFormat(String path) {
+        if (path == null) {
+            return "";
+        }
+
+        path = path.replaceAll("\\\\", "/").replaceAll("//", "/");
+        return path.endsWith("/") ? path : path + "/";
+    }
+
     public static void main(String[] args) throws IOException {
-        File zip = new File("D:/dmp/dmp.zip");
-        System.out.println(zip.getAbsolutePath().endsWith(".zip"));
+        // File zip = new File("D:/dmp/dmp.zip");
+        System.out.println("D://a\\b\\/c.txt");
+        System.out.println(pathFormat("D:\\develop\\apache-tomcat-7-3\\webapps\\phis\\\\version_3"));
     }
 }

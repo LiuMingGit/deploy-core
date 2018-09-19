@@ -35,8 +35,11 @@ public interface Constant {
      */
     String CMD_APP_BACKUP = "APP_BACKUP";
 
+    /**
+     * 更新包同步状态
+     */
+    String CMD_FILE_STATUS = "FILE_STATUS";
+
 
     String TMP_FILE_SUFFIX = ".tmp";
-
-
 }

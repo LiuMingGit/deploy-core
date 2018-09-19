@@ -1,10 +1,8 @@
 package com.bsoft.deploy.dao.mapper;
 
 import com.bsoft.deploy.dao.entity.SlaveApp;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.bsoft.deploy.dao.entity.UpdateLog;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
 import java.util.List;
@@ -46,5 +44,7 @@ public interface SlaveAppFileMapper {
     @Update({"update slave_app_file set mark=#{mark},optime=#{optime, jdbcType=TIMESTAMP} where id=#{id}"})
     int updateSlaveFile(@Param("mark") String mark, @Param("optime") Date optime,  @Param("id") int id);
 
-
+    @Insert("insert into slave_app_update(slaveAppId,oldPkgId,newPkgId,optime,opuser) values (#{slaveAppId},#{oldPkgId},#{newPkgId},#{optime},#{opuser})")
+    @Options(useGeneratedKeys = true)
+    void saveUpdateLog(UpdateLog log);
 }

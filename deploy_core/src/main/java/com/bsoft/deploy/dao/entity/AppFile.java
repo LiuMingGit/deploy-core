@@ -16,6 +16,11 @@ public class AppFile implements Serializable {
 
     private String mark;
 
+    /**
+     * 一次更新的唯一标志
+     */
+    private int updateId;
+
     private int logId;
     /**
      * 文件名
@@ -118,6 +123,15 @@ public class AppFile implements Serializable {
 
     public void setLogId(int logId) {
         this.logId = logId;
+    }
+
+
+    public int getUpdateId() {
+        return updateId;
+    }
+
+    public void setUpdateId(int updateId) {
+        this.updateId = updateId;
     }
 
     @Override
