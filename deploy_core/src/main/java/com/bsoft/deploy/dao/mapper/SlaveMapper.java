@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /**
- * desc
+ * 节点相关的
  * Created on 2018/8/17.
  *
  * @author yangl
