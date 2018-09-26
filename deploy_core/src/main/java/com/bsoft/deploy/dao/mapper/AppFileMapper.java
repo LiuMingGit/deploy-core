@@ -21,10 +21,17 @@ public interface AppFileMapper {
      * @param path
      * @return
      */
-    @Select("select id,mark from base_app_file where appId=#{appId} and path=#{path}")
-    FileDTO loadAppFile(@Param("appId") int appId, @Param("path") String path);
+    @Select("select appId, filename, path, optime,sign from base_app_file where appId=#{appId} and path=#{path}")
+    List<FileDTO> loadAppFile(@Param("appId") int appId, @Param("path") String path);
 
-    @Select("select id,filename,appId,path,mark from base_app_file where appId=#{appId}")
+
+    @Select("select appId, filename, path, optime,sign from base_app_file where appId=#{appId} and sign=#{sign}")
+    List<FileDTO> loadAppFilesWithSign(@Param("appId") int appId, @Param("sign") int sign);
+
+    @Select("select appId, filename, path, optime,sign from base_app_file where appId=#{appId} and path=#{path} and sign=#{sign}")
+    FileDTO loadAppFileWithSign(@Param("appId") int appId, @Param("path") String path, @Param("sign") int sign);
+
+    @Select("select id,filename,appId,path from base_app_file where appId=#{appId}")
     List<FileDTO> loadAppFiles(int appId);
 
     /**
@@ -33,7 +40,7 @@ public interface AppFileMapper {
      * @param fileDTO
      * @return
      */
-    @Insert({"insert into base_app_file(appId, filename, path, mark, optime,sign) values(#{appId}, #{filename}, #{path},#{mark}, #{optime, jdbcType=TIMESTAMP},0)"})
+    @Insert({"insert into base_app_file(appId, filename, path, optime,sign) values(#{appId}, #{filename}, #{path}, #{optime, jdbcType=TIMESTAMP},0)"})
     @Options(useGeneratedKeys = true)
     int saveAppFile(FileDTO fileDTO);
 

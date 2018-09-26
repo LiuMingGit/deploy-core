@@ -2,9 +2,9 @@ package com.bsoft.deploy.context.store;
 
 import com.bsoft.deploy.dao.entity.Slave;
 import com.bsoft.deploy.dao.entity.SlaveApp;
-import com.bsoft.deploy.dao.mapper.SlaveAppFileMapper;
 import com.bsoft.deploy.dao.mapper.SlaveMapper;
 import com.bsoft.deploy.utils.FileUtils;
+import com.bsoft.deploy.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,10 +20,6 @@ public class SlaveStore {
     @Autowired
     SlaveMapper slaveMapper;
 
-    @Autowired
-    SlaveAppFileMapper slaveAppFileMapper;
-
-
     private static ConcurrentHashMap<Integer, Slave> slaves = new ConcurrentHashMap<>();
 
     private static ConcurrentHashMap<Integer, SlaveApp> slaveApps = new ConcurrentHashMap<>();
@@ -37,6 +33,19 @@ public class SlaveStore {
         }
         Slave slave = slaveMapper.findSlave(slaveId);
         slaves.put(slaveId, slave);
+        return slave;
+    }
+
+    public Slave getSlave(String ip) {
+        for (Slave slave : slaves.values()) {
+            if (StringUtils.isEq(ip, slave.getIp())) {
+                return slave;
+            }
+        }
+        Slave slave = slaveMapper.findSlaveByIp(ip);
+        if (slave != null) {
+            slaves.put(slave.getId(), slave);
+        }
         return slave;
     }
 
@@ -57,7 +66,7 @@ public class SlaveStore {
         if (slaveApps.containsKey(slaveAppId)) {
             return slaveApps.get(slaveAppId);
         }
-        SlaveApp slaveApp = slaveAppFileMapper.findSlaveApp(slaveAppId);
+        SlaveApp slaveApp = slaveMapper.findSlaveAppById(slaveAppId);
         slaveApps.put(slaveAppId, slaveApp);
         return slaveApp;
     }
