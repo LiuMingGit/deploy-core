@@ -50,7 +50,7 @@ public interface SlaveMapper {
     @Select("select id,appId,slaveId,pkgId,app_target_path,app_backup_path,app_tomcat_home from slave_app where appId=#{appId}")
     List<SlaveApp> findSlaveApps(int appId);
 
-    @Insert("insert into slave_app(slaveId,appId,app_target_path,app_backup_path,app_tomcat_home) values(#{slaveId},#{appId},#{app_target_path},#{app_backup_path},#{app_tomcat_home})")
+    @Insert("insert into slave_app(slaveId,appId,app_target_path,app_backup_path,app_tomcat_home) values(#{slaveId},#{appId},#{appTargetPath},#{appBackupPath},#{appTomcatHome})")
     @Options(useGeneratedKeys = true)
     void saveSlaveApp(SlaveApp slaveApp);
 
