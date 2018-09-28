@@ -78,4 +78,6 @@ public interface AppMapper {
     @Select("select id,appId,version,updateDesc,optime,type,locked from app_upd_pkg where appId=#{appId} and id>#{pkgId} order by id desc")
     List<AppPackage> getUpdates(@Param("appId") int appId,@Param("pkgId") int pkgId);
 
+    @Select("select path from base_app_file where appId=#{appId} and sign=1")
+    List<String> findAppIgnoreFiles(int appId);
 }

@@ -4,6 +4,7 @@ import com.bsoft.deploy.dao.entity.App;
 import com.bsoft.deploy.dao.mapper.AppMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -22,6 +23,8 @@ public class AppStore {
      */
     private ConcurrentHashMap<Integer, App> apps = new ConcurrentHashMap<>();
 
+    private ConcurrentHashMap<Integer, List<String>> appFiles = new ConcurrentHashMap<>();
+
     public String getAppBasePath(int appId) {
         return getApp(appId).getPath();
     }
@@ -35,10 +38,28 @@ public class AppStore {
         return app;
     }
 
+    public List<String> getAppFiles(int appId) {
+        if (!appFiles.containsKey(appId)) {
+            List<String> files = appMapper.findAppIgnoreFiles(appId);
+            appFiles.put(appId,files);
+        }
+        return appFiles.get(appId);
+    }
+
+    public void reload(int appId) {
+        apps.remove(appId);
+    }
+
+    public void reloadFiles(int appId) {
+        appFiles.remove(appId);
+    }
     /**
      * 清除缓存
      */
     public void reloadAll() {
         apps.clear();
+        appFiles.clear();
     }
+
+
 }

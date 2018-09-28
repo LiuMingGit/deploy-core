@@ -81,6 +81,15 @@ public class SlaveStore {
         return port;
     }
 
+    public void reloadSlave(int slaveId) {
+        slaves.remove(slaveId);
+    }
+
+    public void reloadSlaveApp(int slaveAppId) {
+        slaveApps.remove(slaveAppId);
+        slaveAppPort.remove(slaveAppId);
+    }
+
     /**
      * 清除缓存
      */
@@ -90,7 +99,4 @@ public class SlaveStore {
         slaveAppPort.clear();
     }
 
-    public void reloadSlaveApp(int slaveAppId) {
-        slaveApps.remove(slaveAppId);
-    }
 }
